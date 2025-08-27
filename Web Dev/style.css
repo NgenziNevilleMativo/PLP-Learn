@@ -1,0 +1,117 @@
+/* --- General and Mobile-First Styles --- */
+/* These are the base styles that apply to all screen sizes */
+
+/* A modern reset to make browser styling more consistent */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* --- Mobile Layout (Default) --- */
+/* On mobile, all grid items will stack vertically by default */
+.grid-container {
+    display: grid;
+    /* Defines a simple single-column layout for mobile */
+    grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "sidebar"
+        "footer";
+}
+
+/* Assigning elements to their named grid areas */
+.header { grid-area: header; }
+.nav { grid-area: nav; }
+.main-content { grid-area: main; }
+.sidebar { grid-area: sidebar; }
+.footer { grid-area: footer; }
+
+/* General styling for all direct children of the grid container */
+.grid-container > * {
+    background-color: #ffffff;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header, .footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+}
+
+.nav {
+    background-color: #004080;
+    display: flex;
+    flex-direction: column; /* Stack nav links vertically on mobile */
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* --- Flexbox Container for Cards --- */
+/* On mobile, cards will stack vertically */
+.flex-container {
+    display: flex;
+    flex-direction: column; /* Stack cards on top of each other */
+    gap: 15px; /* Creates space between the flex items (cards) */
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 8px; /* Adds rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+/* --- Tablet and Desktop Breakpoint --- */
+/* This media query applies styles ONLY when the screen is 768px or wider */
+
+@media (min-width: 768px) {
+    
+    /* Re-define the grid for larger screens */
+    .grid-container {
+        /* Creates a two-column layout */
+        grid-template-columns: 3fr 1fr; /* Main content is 3x wider than sidebar */
+        grid-template-areas:
+            "header  header"
+            "nav     nav"
+            "main    sidebar"
+            "footer  footer";
+        gap: 10px; /* Adds space between grid items */
+        padding: 10px;
+    }
+
+    /* Remove borders and add shadows for a card-like effect on desktop */
+    .grid-container > * {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Change nav links to be horizontal */
+    .nav {
+        flex-direction: row; /* Align nav links side-by-side */
+        justify-content: center;
+    }
+
+    /* Change flexbox cards to be horizontal */
+    .flex-container {
+        flex-direction: row; /* Align cards side-by-side */
+    }
+}
