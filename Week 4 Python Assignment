@@ -1,0 +1,101 @@
+# main.py
+# This script demonstrates file handling (reading/writing) and robust
+# exception handling in Python, fulfilling the assignment requirements.
+
+import os
+
+def modify_and_write_file(input_filename, output_filename):
+    """
+    Reads content from an input file, adds line numbers, and writes
+    the modified content to a new output file.
+
+    This function handles potential FileNotFoundError if the input file
+    does not exist.
+    """
+    print("--- 🖋️ Challenge 1: Reading, Modifying, and Writing File ---")
+    try:
+        # Using 'with' statement ensures files are automatically closed
+        with open(input_filename, 'r') as infile:
+            lines = infile.readlines() # Read all lines into a list
+
+        with open(output_filename, 'w') as outfile:
+            # Enumerate adds a counter to an iterable
+            for i, line in enumerate(lines):
+                # Write the line number (i+1) and the original line content
+                outfile.write(f"Line {i+1}: {line}")
+
+        print(f"✅ Success! Copied and modified '{input_filename}' to '{output_filename}'.")
+        print(f"Check your project folder for '{output_filename}' to see the result.\n")
+
+    except FileNotFoundError:
+        # This block runs if the input_filename does not exist
+        print(f"❌ Error: The source file '{input_filename}' was not found.\n")
+    except Exception as e:
+        # This block catches any other unexpected errors during file processing
+        print(f"❌ An unexpected error occurred: {e}\n")
+
+
+def read_user_specified_file():
+    """
+    Prompts the user for a filename and attempts to read and display its content.
+
+    This function demonstrates comprehensive error handling for file operations,
+    including non-existent files and permission issues.
+    """
+    print("--- 🧪 Lab 2: Handling User Input and Potential Errors ---")
+    try:
+        # Get a filename from the user
+        filename = input("Enter the filename you want to read (e.g., 'original_story.txt'): ")
+
+        with open(filename, 'r') as f:
+            print(f"\n--- Content of '{filename}' ---")
+            content = f.read()
+            # If the file is empty, print a message
+            if not content:
+                print("[This file is empty]")
+            else:
+                print(content)
+            print("---------------------------------\n")
+            print("✅ File read successfully!")
+
+    except FileNotFoundError:
+        # This is a very common error, so we handle it specifically.
+        print(f"\n❌ Error: Sorry, the file '{filename}' could not be found.")
+        print("Please make sure the file is in the same directory as the script or provide the full path.\n")
+
+    except PermissionError:
+        # Handles cases where the script doesn't have the necessary permissions to read the file.
+        print(f"\n❌ Error: You do not have permission to read the file '{filename}'.")
+        print("Please check the file's permissions.\n")
+
+    except Exception as e:
+        # A general catch-all for any other exceptions that might occur.
+        print(f"\n❌ An unexpected error occurred: {e}\n")
+
+    finally:
+        # The 'finally' block always executes, whether an error occurred or not.
+        print("--- File reading attempt finished. ---")
+
+
+# Main execution block
+if __name__ == "__main__":
+    # --- Setup for Challenge 1 ---
+    # We will programmatically create a sample file to work with.
+    original_file = "original_story.txt"
+    modified_file = "modified_story_with_lines.txt"
+    sample_content = (
+        "The quick brown fox jumps over the lazy dog.\n"
+        "In a quiet forest, a gentle stream flows.\n"
+        "Python makes file handling simple and elegant.\n"
+    )
+
+    # Create the sample file for the first part of the assignment
+    with open(original_file, "w") as f:
+        f.write(sample_content)
+
+    # --- Run Challenge 1 ---
+    modify_and_write_file(original_file, modified_file)
+
+    # --- Run Lab 2 ---
+    read_user_specified_file()
+
