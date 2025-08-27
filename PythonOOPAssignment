@@ -1,0 +1,110 @@
+# ==============================================================================
+# Assignment 1: Design Your Own Class! 🏗️
+#
+# We'll create a parent class 'Character' and a child class 'Superhero'
+# to demonstrate inheritance and encapsulation.
+# ==============================================================================
+
+# --- Parent Class (Superclass) ---
+class Character:
+    """A base class for characters in a story."""
+    def __init__(self, name, universe):
+        self.name = name
+        self.universe = universe
+
+    def introduce(self):
+        """A general introduction method."""
+        return f"Hello, my name is {self.name} from the {self.universe} universe."
+
+# --- Child Class (Subclass) ---
+# Superhero inherits attributes and methods from Character
+class Superhero(Character):
+    """
+    Represents a Superhero, inheriting from Character.
+    This class also demonstrates encapsulation by hiding the secret identity.
+    """
+    def __init__(self, name, universe, power, secret_identity):
+        # Call the constructor of the parent class (Character)
+        super().__init__(name, universe)
+        
+        # Add attributes specific to the Superhero class
+        self.power = power
+        
+        # This is a "private" attribute to demonstrate encapsulation.
+        # The double underscore __ makes it harder to access from outside the class.
+        self.__secret_identity = secret_identity
+
+    def attack(self):
+        """A method unique to the Superhero class."""
+        return f"{self.name} attacks with the power of {self.power}!"
+
+    def reveal_secret(self):
+        """
+        This is a "getter" method. It provides controlled access
+        to the private __secret_identity attribute.
+        """
+        return f"My secret identity is {self.__secret_identity}!"
+
+# --- Creating and Using Superhero Objects ---
+print("--- Assignment 1: Superhero Class ---")
+# Create an instance of the Superhero class
+superman = Superhero("Superman", "DC", "Super Strength and Flight", "Clark Kent")
+spiderman = Superhero("Spider-Man", "Marvel", "Spider-Senses and Web-Slinging", "Peter Parker")
+
+# Call the 'introduce' method (inherited from Character)
+print(superman.introduce())
+print(spiderman.introduce())
+
+# Call the 'attack' method (defined in Superhero)
+print(superman.attack())
+print(spiderman.attack())
+
+# Access the encapsulated data using its public method
+print(superman.reveal_secret())
+print(spiderman.reveal_secret())
+
+# Trying to access the private attribute directly will cause an error
+try:
+    print(superman.__secret_identity)
+except AttributeError as e:
+    print(f"\nError trying to access private data directly: {e}")
+
+
+# ==============================================================================
+# Activity 2: Polymorphism Challenge! 🎭
+#
+# We'll create several vehicle classes (Car, Plane, Boat) that all have
+# a 'move' method, but each one implements it differently.
+# ==============================================================================
+
+class Car:
+    """A class representing a car."""
+    def move(self):
+        print("Driving on the road 🚗")
+
+class Plane:
+    """A class representing a plane."""
+    def move(self):
+        print("Flying in the sky ✈️")
+
+class Boat:
+    """A class representing a boat."""
+    def move(self):
+        print("Sailing on the water ⛵️")
+
+# --- Demonstrating Polymorphism ---
+print("\n\n--- Activity 2: Polymorphism Challenge ---")
+
+# Create instances of each vehicle class
+car1 = Car()
+plane1 = Plane()
+boat1 = Boat()
+
+# Create a list containing the different vehicle objects
+vehicles = [car1, plane1, boat1]
+
+# Loop through the list and call the 'move()' method on each object.
+# Python automatically calls the correct 'move' method for each class.
+# This is polymorphism in action!
+for vehicle in vehicles:
+    vehicle.move()
