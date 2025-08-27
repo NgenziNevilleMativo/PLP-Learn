@@ -1,0 +1,65 @@
+/* --- Basic Body and Font Styling --- */
+/* This is a tag selector, applying styles to the <body> element */
+body {
+    font-family: Arial, sans-serif; /* Sets a clean, readable font */
+    line-height: 1.6; /* Improves text readability */
+    background-color: #f4f4f4; /* A light grey background for the page */
+    color: #333; /* A dark grey for the main text color */
+    margin: 0; /* Removes the default body margin */
+    padding: 0; /* Removes the default body padding */
+}
+
+/* --- Layout Container --- */
+/* This class selector is used to center the main content */
+.container {
+    width: 80%; /* Sets the container width to 80% of the page width */
+    max-width: 960px; /* Ensures the container doesn't get too wide on large screens */
+    margin: 20px auto; /* Centers the container horizontally with space on top/bottom */
+}
+
+/* --- Header and Footer Styling --- */
+/* This is an ID selector, styling the unique header element */
+#main-header {
+    background-color: #333; /* Dark background for the header */
+    color: #fff; /* White text color */
+    padding: 20px; /* Adds space inside the header */
+    text-align: center; /* Centers the text */
+}
+
+/* Styling the unique footer element */
+#main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px; /* Adds space above the footer */
+    color: #666;
+}
+
+/* --- Card Styling (Demonstrating the Box Model) --- */
+/* This class selector styles all elements with class="card" */
+.card {
+    background-color: #fff; /* White background for the card */
+    
+    /* 1. BORDER: A 1px solid line around the element */
+    border: 1px solid #ddd;
+    
+    /* 2. PADDING: 25px of space INSIDE the border, between the border and the content */
+    padding: 25px;
+    
+    /* 3. MARGIN: 20px of space OUTSIDE the border, separating cards from each other */
+    margin-bottom: 20px;
+
+    /* Optional: Adds a subtle shadow and rounded corners for a nicer look */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+/* --- Basic Typography for the Card --- */
+.card h2 {
+    color: #0056b3; /* A blue color for headings inside the card */
+    margin-top: 0; /* Removes the default top margin from the h2 */
+}
+
+.card ul {
+    list-style-type: square; /* Changes the bullet point style */
+    padding-left: 20px; /* Adds some space to the left of the list items */
+}
